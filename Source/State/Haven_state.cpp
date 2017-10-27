@@ -9,12 +9,15 @@ void Haven_state::show() {
     std::cout << "Show()" << std::endl;
 }
 
-void Haven_state::handle_input(Game &game) {
+void Haven_state::handle_input(Player &player) {
 
 
 }
 
-void Haven_state::run(Game *game) {
+void Haven_state::run(Player *player) {
+
+    std::cout << "haven: " << player->get_current_haven() << std::endl;
+
     char input[15];
 
     std::cin >> input;

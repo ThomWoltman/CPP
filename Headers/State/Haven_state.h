@@ -13,8 +13,8 @@ class Haven_state: public Game_state {
 public:
     void show();
 
-    void handle_input(Game &game);
-    void  run(Game *game);
+    void handle_input(Player &game);
+    void  run(Player *game);
 
 };
 

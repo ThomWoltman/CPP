@@ -6,15 +6,15 @@
 #define EINDOPDRACHTCPP_GAME_STATE_H
 
 
-class Game;
+#include "../Models/Player.h"
 
 class Game_state {
  public:
     Game_state();
 
-    virtual void run(Game *game);
+    virtual void run(Player *player);
     virtual void show();
-    virtual void handle_input(Game *game);
+    virtual void handle_input(Player *player);
 private:
 
 };

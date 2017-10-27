@@ -6,8 +6,8 @@
 
 
 
-String::String(char *charArray) {
-        this->string = charArray;
+String::String(const char *charArray) : string{charArray} {
+
 }
 
 const bool String::equals(const char *char_array) const {

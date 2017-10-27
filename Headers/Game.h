@@ -7,23 +7,21 @@
 
 
 #include "State/Game_state_context.h"
+#include "Models/Player.h"
 
 
 class Game_state;
 
 class Game {
 public:
-    Game(int coins);
+    Game(int coins, const char begin_haven[]);
     void run();
-    void next_state(Game_state* state);
-
     void quit();
 
 private:
     Game_state_context state_context;
     bool  is_running;
-    int coins;
-
+    Player player;
 };
 
 

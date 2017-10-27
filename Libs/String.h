@@ -8,8 +8,8 @@
 
 class String {
 public:
-    char* string;
-    String(char* charArray);
+    const char* string;
+    String(const char* charArray);
     const bool equals(const char* char_array) const;
 };
 

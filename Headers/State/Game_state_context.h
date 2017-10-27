@@ -12,11 +12,10 @@
 #include "Fight_state.h"
 
 
-
 class Game_state_context {
 public:
     Game_state_context();
-    void run(Game* game);
+    void run(Player* player);
     void next_state(int state);
 private:
     Fight_state fight_state;
