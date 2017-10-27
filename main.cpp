@@ -1,6 +1,8 @@
-#include <iostream>
+#include "Headers/Game.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Game game(1000);
+    game.run();
+
     return 0;
 }
