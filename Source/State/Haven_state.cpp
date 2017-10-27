@@ -3,29 +3,30 @@
 //
 
 #include "../../Headers/State/Haven_state.h"
+#include "../../Libs/String.h"
 
 void Haven_state::show() {
     std::cout << "Show()" << std::endl;
 }
 
 void Haven_state::handle_input(Game &game) {
-    char h;
-    std::cin >>h;
-    std::cout << h << std::endl;
-    std::cout << "handle()" << std::endl;
+
 
 }
 
 void Haven_state::run(Game *game) {
-    char* input;
-    std::cin >> input;
-    std::cout << input << std::endl;
+    char input[15];
 
-    bool equal = input == "quit";
-    if(equal){
+    std::cin >> input;
+
+    String i(input);
+
+    if(i.equals("quit")){
         std::cout << "true" << std::endl;
     }
-
+    else{
+        std::cout << "false" << std::endl;
+    }
 
     std::cout << "run haven" << std::endl;
 }

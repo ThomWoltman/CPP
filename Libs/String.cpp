@@ -11,11 +11,17 @@ String::String(char *charArray) {
 }
 
 const bool String::equals(const char *char_array) const {
-    for(int i=0;string[i]!='\0' && char_array[i]!='\0';i++){
+    if(string[0] == '\0')
+        return false;
+
+    int i = 0;
+
+    for(i;string[i]!='\0';i++){
         if(string[i]!=char_array[i])
-            return 0;
+            return false;
     }
-    return 1;
+
+    return char_array[i] == '\0';
 }
 
 
