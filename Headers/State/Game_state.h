@@ -7,7 +7,7 @@
 
 
 #include "../Models/Player.h"
-
+class Player;
 class Game_state {
  public:
     Game_state();

@@ -6,12 +6,11 @@
 #define EINDOPDRACHTCPP_GAME_STATE_CONTEXT_H
 
 
-#include "Game_state.h"
 #include "Haven_state.h"
-#include "Sea_state.h"
 #include "Fight_state.h"
+#include "Sea_state.h"
 
-
+class Player;
 class Game_state_context {
 public:
     Game_state_context();

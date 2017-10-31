@@ -6,7 +6,16 @@
 #define EINDOPDRACHTCPP_CANON_H
 
 
+#include <string>
+using namespace std;
+
 class Canon {
+public:
+    string name;
+    int price;
+    int damgage;
+    int hp;
+
 
 };
 

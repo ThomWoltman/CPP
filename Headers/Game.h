@@ -14,7 +14,7 @@ class Game_state;
 
 class Game {
 public:
-    Game(int coins, const char begin_haven[]);
+    Game(int coins, const char begin_haven[], Game_state game);
     void run();
     void quit();
 

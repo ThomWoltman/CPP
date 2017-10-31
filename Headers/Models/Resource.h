@@ -7,6 +7,9 @@
 
 
 class Resource {
+public:
+    char* name;
+    int hoeveelheid;
 
 };
 

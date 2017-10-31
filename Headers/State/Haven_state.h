@@ -15,6 +15,19 @@ public:
 
     void handle_input(Player &game);
     void  run(Player *game);
+    void wegvaren(Player *game);
+    void shipKopen(Player *game);
+    void inkopen(Player *game);
+    void kopen(Player *game, const int index);
+    void verkopen(Player *game, const int index);
+    void kannonen(Player *game);
+    void sell_kannonen(Player *game);
+    void add_kannonen(Player *game);
+
+
+    void repareren(Player *game);
+
+
 
 };
 
