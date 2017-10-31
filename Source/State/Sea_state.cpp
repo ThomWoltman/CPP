@@ -13,7 +13,7 @@ void Sea_state::run(Player *player) {
     while(player->beurten != 0){
 
         int kuch = ran.get_random(0,100);
-        if(kuch < 100){
+        if(kuch < 21){
             player->game_state = new Fight_state();
             return;
         }

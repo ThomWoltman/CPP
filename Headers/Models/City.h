@@ -7,12 +7,13 @@
 
 #include <string>
 #include <vector>
+#include "../../Libs/String.h"
 
 using namespace std;
-
 class City {
 public:
-    string name;
+    ~City(){};
+string name;
     vector<string> distances;
 
 

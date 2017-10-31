@@ -11,8 +11,8 @@ Game::Game(int coins, const char begin_haven[], Game_state game) : player{coins,
 }
 void Game::run(){
 
-    Haven_state game = Haven_state();
-    player.game_state = &game;
+    Haven_state* game = new Haven_state();
+    player.game_state = game;
     player.ship.hp =1;
     while(player.ship.hp > 0 && player.get_current_coins() < 100000){
 
@@ -30,6 +30,9 @@ void Game::run(){
     }else{
         cout<< "je bent dood";
     }
+
+        delete player.game_state;
+
 }
 
 void Game::quit() {

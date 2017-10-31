@@ -9,12 +9,16 @@
 using namespace std;
 #include "Random.h"
 int Random::get_random(int first, int second) {
+    if(first == 0 && second == 0){
+        return 0;
+    }
     std::default_random_engine generator;
     generator.seed(time(0));
     std::uniform_int_distribution<int> distribution1(first, second);
 
     int xRan;
     srand(time(0)); // This will ensure a really randomized number by help of time.
+
 
     xRan = rand() % second + first;
     return xRan;

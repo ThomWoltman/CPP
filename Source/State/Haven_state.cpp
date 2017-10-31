@@ -66,20 +66,22 @@ void Haven_state::run(Player *player) {
    else if(i.equals("5")){
         std::cout << "Hoeveel hp wil je repareren" << std::endl;
         try {
-            char h;
+            char h[15];
             std::cin >> h;
 
-            int i = (int) h;
+            int i = atoi(h);
             player->repaire_ship(i);
+
 
         }catch(int x){
             cout << "foute waarde ingevuld" << endl;
+
         }
 
 
     }
    else if(i.equals("6")){
-        std::cout << "true" << std::endl;
+        player->ship.hp = 0;
     }
     else{
         std::cout << "voer een gelige actie in" << std::endl;
@@ -321,13 +323,16 @@ void Haven_state::verkopen(Player *game, int index) {
     auto prijzen = reader1.get_goederen_prijs();
 
 
-
-
             for(int x = 0 ; x < resources.size() ; x++){
 
                 cout << "["<<x<< "]: name : "<<resources[x].name << " aantal :"<< resources[x].hoeveelheid  <<endl;
 
             }
+
+    if(game->get_current_resource().empty()){
+        cout<< "Je hbet geen goederen" <<endl;
+        return;
+    }
 
     char input[15];
     cout<< "wat wil je verkopen" <<endl;
@@ -345,10 +350,45 @@ void Haven_state::verkopen(Player *game, int index) {
 
 
     Resource resource;
-    resource.hoeveelheid = q;
+    resource.hoeveelheid = q ;
     resource.name = resources[p].name;
 
-    game->sell_current_resource(resource,10);
+    if( resource.name = "hout"){
+        game->sell_current_resource(resource,prijzen[d].hout);
+    }
+    else if(resource.name = "vlees"){
+        game->sell_current_resource(resource,prijzen[d].vlees);
+    }
+    else if(resource.name = "graan"){
+        resource.name = "graan";
+        game->sell_current_resource(resource,prijzen[d].graan);
+    } else if(resource.name = "tabak"){
+        game->sell_current_resource(resource,prijzen[d].tabak);
+    } else if(resource.name = "suiker"){
+        game->sell_current_resource(resource,prijzen[d].suiker);
+    } else if(resource.name = "zout"){
+        game->sell_current_resource(resource,prijzen[d].zout);
+    } else if(resource.name = "rum"){
+        game->sell_current_resource(resource,prijzen[d].rum);
+    } else if(resource.name = "aardappels"){
+        game->sell_current_resource(resource,prijzen[d].aardappels);
+    } else if(resource.name = "hennep"){
+        game->sell_current_resource(resource,prijzen[d].hennep);
+    } else if(resource.name = "verfstof"){
+        game->sell_current_resource(resource,prijzen[d].verfstof);
+    } else if(resource.name = "katoen"){
+        game->sell_current_resource(resource,prijzen[d].katoen);
+    } else if(resource.name = "bakstenen"){
+        game->sell_current_resource(resource,prijzen[d].bakstenen);
+    } else if(resource.name = "cacao"){
+        game->sell_current_resource(resource,prijzen[d].cacao);
+    } else if(resource.name = "vis"){
+        game->sell_current_resource(resource,prijzen[d].vis);
+    }
+
+
+
+
 
 
 }

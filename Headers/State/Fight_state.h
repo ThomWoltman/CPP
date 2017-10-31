@@ -8,14 +8,15 @@
 #include <iostream>
 #include "Game_state.h"
 class Fight_state : public Game_state {
+public:
      void run(Player *player);
      void show(){}
      void handle_input(Player *player){
 
     }
     Ship pirate();
-    void fight(Ship pirate, Ship *me);
-    void vlucht(Ship pirate,Ship *me);
+    void fight(Ship* pirate, Ship *me);
+    bool vlucht(Ship pirate,Ship *me);
 };
 
 

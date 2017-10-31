@@ -11,6 +11,7 @@
 
 class CsvReaderGoederen {
 public:
+
     vector<Goederen_hoeveelheid> get_goederen_hoeveelheid();
 
 

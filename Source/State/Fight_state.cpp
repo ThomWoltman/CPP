@@ -9,9 +9,9 @@
 
 void Fight_state::run(Player *player) {
 
-
+bool gevlucht = false;
     Ship pirate = this->pirate();
-while (pirate.hp >0){
+while (pirate.hp >0 || !gevlucht){
     if(player->ship.hp <1){
         cout << "je bent dood";
         return;
@@ -42,11 +42,18 @@ while (pirate.hp >0){
 
     if(i.equals("1")){
         std::cout << "fight" << std::endl;
-        fight(pirate, &player->ship);
+        fight(&pirate, &player->ship);
     }
     else if(i.equals("2")){
         std::cout << "vluchten" << std::endl;
-        vlucht(pirate, &player->ship);
+         gevlucht = vlucht(pirate, &player->ship);
+        if(!gevlucht){
+            cout << "Je bent niet gevlucht"<< endl;
+        }else{
+            player->game_state = new Sea_state();
+            return;
+
+        }
     }
     else if(i.equals("3")){
         std::cout << "Je bent helemaal leeg geroofd" << std::endl;
@@ -56,100 +63,119 @@ while (pirate.hp >0){
     }
 }
 
-    Sea_state sea;
-    player->game_state = &sea;
+
 
 }
 
-void Fight_state::vlucht(Ship pirate, Ship* me) {
+bool Fight_state::vlucht(Ship pirate, Ship* me) {
     Random ran = Random();
 
 
 
-    if(me->type == "licht" && pirate.type == "licht"){
+    if(me->bijz == "licht" && pirate.bijz == "licht"){
         int random = ran.get_random(1,2);
         if(random == 1){
 
+            return true;
         }else{
-            fight(pirate, me);
-        }
+            for(int x = 0 ; x < pirate.cannon.size(); x++){
+                me->hp = me->hp - pirate.cannon[x].damgage;
+            }        }
     }
-    if(me->type == "licht" && pirate.type == ""){
+    if(me->bijz == "licht" && pirate.bijz == ""){
         int random = ran.get_random(0,100);
         if(random <60){
+            return true;
 
         }else{
-            fight(pirate, me);
-        }
+            for(int x = 0 ; x < pirate.cannon.size(); x++){
+                me->hp = me->hp - pirate.cannon[x].damgage;
+            }        }
     }
-    if(me->type == "licht" && pirate.type == "log"){
+    if(me->bijz == "licht" && pirate.bijz == "log"){
         int random = ran.get_random(0,100);
         if(random <75){
+            return true;
 
         }else{
-            fight(pirate, me);
-        }
+            for(int x = 0 ; x < pirate.cannon.size(); x++){
+                me->hp = me->hp - pirate.cannon[x].damgage;
+            }        }
     }
-    if(me->type == "" && pirate.type == "licht"){
+    if(me->bijz == "" && pirate.bijz == "licht"){
         int random = ran.get_random(0,100);
         if(random <30){
+            return true;
 
         }else{
-            fight(pirate, me);
-        }
+            for(int x = 0 ; x < pirate.cannon.size(); x++){
+                me->hp = me->hp - pirate.cannon[x].damgage;
+            }        }
     }
-    if(me->type == "" && pirate.type == ""){
+    if(me->bijz == "" && pirate.bijz == ""){
         int random = ran.get_random(0,100);
         if(random <40){
+            return true;
 
         }else{
-            fight(pirate, me);
-        }
+            for(int x = 0 ; x < pirate.cannon.size(); x++){
+                me->hp = me->hp - pirate.cannon[x].damgage;
+            }        }
     }
-    if(me->type == "" && pirate.type == "log"){
+    if(me->bijz == "" && pirate.bijz == "log"){
         int random = ran.get_random(0,100);
         if(random <40){
+            return true;
 
         }else{
-            fight(pirate, me);
-        }
+            for(int x = 0 ; x < pirate.cannon.size(); x++){
+                me->hp = me->hp - pirate.cannon[x].damgage;
+            }        }
     }
-    if(me->type == "log" && pirate.type == "licht"){
+    if(me->bijz == "log" && pirate.bijz == "licht"){
         int random = ran.get_random(0,100);
         if(random <5){
+            return true;
 
         }else{
-            fight(pirate, me);
-        }
+            for(int x = 0 ; x < pirate.cannon.size(); x++){
+                me->hp = me->hp - pirate.cannon[x].damgage;
+            }        }
     }
-    if(me->type == "log" && pirate.type == ""){
+    if(me->bijz == "log" && pirate.bijz == ""){
         int random = ran.get_random(0,100);
         if(random <15){
+            return true;
 
         }else{
-            fight(pirate, me);
-        }
+            for(int x = 0 ; x < pirate.cannon.size(); x++){
+                me->hp = me->hp - pirate.cannon[x].damgage;
+            }        }
     }
-    if(me->type == "log" && pirate.type == "log"){
+    if(me->bijz == "log" && pirate.bijz == "log"){
         int random = ran.get_random(0,100);
         if(random <30){
+            return true;
 
         }else{
-            fight(pirate, me);
+            for(int x = 0 ; x < pirate.cannon.size(); x++){
+                me->hp = me->hp - pirate.cannon[x].damgage;
+            }
         }
     }
+    return false;
+
 }
 
-void Fight_state::fight(Ship pirate, Ship *me) {
+void Fight_state::fight(Ship *pirate, Ship *me) {
 
     for(int x = 0 ; x < me->cannon.size(); x++){
-        pirate.hp - me->cannon[x].damgage;
-        pirate.hp - me->cannon[x].damgage;
+        pirate->hp = pirate->hp - me->cannon[x].damgage;
 
     }
-    if(pirate.hp > 0 ){
-        for(int x = 0 ; x < pirate.cannon.size(); x++){
-            me->hp = me->hp - pirate.cannon[x].damgage;
+    if(pirate->hp > 0 ){
+        for(int x = 0 ; x < pirate->cannon.size(); x++){
+            me->hp = me->hp - pirate->cannon[x].damgage;
         }
     }else{
         cout << "pirate  death"<< endl;

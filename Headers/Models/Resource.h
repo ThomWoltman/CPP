@@ -5,13 +5,21 @@
 #ifndef EINDOPDRACHTCPP_RESOURCE_H
 #define EINDOPDRACHTCPP_RESOURCE_H
 
+#include <vector>
+#include <string>
+
+
+class Prices{
+public:
+    int price;
+    std::string stad;
+};
 
 class Resource {
 public:
     char* name;
     int hoeveelheid;
-    int prijs;
-
+    std::vector<Prices> prices;
 };
 
 
