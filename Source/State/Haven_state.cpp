@@ -56,6 +56,10 @@ void Haven_state::run(Player *player) {
 
     }
    else if(i.equals("4")){
+        if(player->ship.type.empty()){
+            std::cout << "koop eerst een bood om te varen" << std::endl;
+            return;
+        }
         std::cout << "wegvaren" << std::endl;
         wegvaren(player);
     }
@@ -113,8 +117,9 @@ index++;
     player->set_current_haven(data[havenIndex].name);
     player->beurten = atoi(data[havenIndex].distances[index].c_str());
 
-    Sea_state* sea ;
-    player->game_state = sea;
+    //delete player->game_state;
+    Sea_state sea = Sea_state();
+    player->game_state =& sea;
 //    Game_state_context game;
 //    game.next_state(2);
 

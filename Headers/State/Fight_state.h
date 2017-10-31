@@ -14,8 +14,8 @@ class Fight_state : public Game_state {
 
     }
     Ship pirate();
-    void fight(Ship pirate, Ship me);
-    void vlucht(Ship pirate,Ship me);
+    void fight(Ship pirate, Ship *me);
+    void vlucht(Ship pirate,Ship *me);
 };
 
 

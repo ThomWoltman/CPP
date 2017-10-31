@@ -6,7 +6,7 @@
 using namespace std;
 int main() {
 
-    Game game(1000000, "Roatan", Haven_state());
+    Game game(50000, "Roatan", Haven_state());
     game.run();
     CsvReader reader;
     auto data = reader.getCities();

@@ -9,6 +9,8 @@
 #include <string>
 #include <vector>
 #include "Canon.h"
+#include "Resource.h"
+
 using namespace std;
 
 class Ship {
@@ -21,6 +23,7 @@ public:
     string schade;
     int hp;
     vector<Canon> cannon;
+    vector<Resource> resources;
 
     string bijz;
 

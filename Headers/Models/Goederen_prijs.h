@@ -12,6 +12,7 @@ using namespace std;
 class Goederen_prijs {
 public:
     string stad;
+
     int bakstenen,laken,cacao,katoen,verfstof,vis,hennep,aardappels,rum,zout,suiker,tabak,graan,vlees,hout;
 
 

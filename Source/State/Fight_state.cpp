@@ -22,6 +22,16 @@ while (pirate.hp >0){
     std::cout << "3: overgeven " << std::endl;
 
 
+    std::cout << "haven: " << player->get_current_haven() << std::endl;
+    std::cout << "ship: " << player->get_current_ship() << std::endl;
+    std::cout << "HP: " << player->ship.hp << std::endl;
+    std::cout << "coins: " << player->get_current_coins() << std::endl;
+    std::cout << "------------------------------- " <<  std::endl;
+
+    std::cout << "Pirate boat " <<  std::endl;
+    std::cout << "HP: " << pirate.hp << std::endl;
+    std::cout << "Type: " << pirate.type << std::endl;
+
 
 
     char input[15];
@@ -32,15 +42,16 @@ while (pirate.hp >0){
 
     if(i.equals("1")){
         std::cout << "fight" << std::endl;
-        fight(pirate, player->ship);
+        fight(pirate, &player->ship);
     }
     else if(i.equals("2")){
         std::cout << "vluchten" << std::endl;
-        vlucht(pirate, player->ship);
+        vlucht(pirate, &player->ship);
     }
     else if(i.equals("3")){
         std::cout << "Je bent helemaal leeg geroofd" << std::endl;
-        player->ship.cannon.clear();
+        player->ship.resources.clear();
+        player->game_state = new Sea_state();
 
     }
 }
@@ -50,12 +61,12 @@ while (pirate.hp >0){
 
 }
 
-void Fight_state::vlucht(Ship pirate, Ship me) {
+void Fight_state::vlucht(Ship pirate, Ship* me) {
     Random ran = Random();
 
 
 
-    if(me.type == "licht" && pirate.type == "licht"){
+    if(me->type == "licht" && pirate.type == "licht"){
         int random = ran.get_random(1,2);
         if(random == 1){
 
@@ -63,7 +74,7 @@ void Fight_state::vlucht(Ship pirate, Ship me) {
             fight(pirate, me);
         }
     }
-    if(me.type == "licht" && pirate.type == ""){
+    if(me->type == "licht" && pirate.type == ""){
         int random = ran.get_random(0,100);
         if(random <60){
 
@@ -71,7 +82,7 @@ void Fight_state::vlucht(Ship pirate, Ship me) {
             fight(pirate, me);
         }
     }
-    if(me.type == "licht" && pirate.type == "log"){
+    if(me->type == "licht" && pirate.type == "log"){
         int random = ran.get_random(0,100);
         if(random <75){
 
@@ -79,7 +90,7 @@ void Fight_state::vlucht(Ship pirate, Ship me) {
             fight(pirate, me);
         }
     }
-    if(me.type == "" && pirate.type == "licht"){
+    if(me->type == "" && pirate.type == "licht"){
         int random = ran.get_random(0,100);
         if(random <30){
 
@@ -87,7 +98,7 @@ void Fight_state::vlucht(Ship pirate, Ship me) {
             fight(pirate, me);
         }
     }
-    if(me.type == "" && pirate.type == ""){
+    if(me->type == "" && pirate.type == ""){
         int random = ran.get_random(0,100);
         if(random <40){
 
@@ -95,7 +106,7 @@ void Fight_state::vlucht(Ship pirate, Ship me) {
             fight(pirate, me);
         }
     }
-    if(me.type == "" && pirate.type == "log"){
+    if(me->type == "" && pirate.type == "log"){
         int random = ran.get_random(0,100);
         if(random <40){
 
@@ -103,7 +114,7 @@ void Fight_state::vlucht(Ship pirate, Ship me) {
             fight(pirate, me);
         }
     }
-    if(me.type == "log" && pirate.type == "licht"){
+    if(me->type == "log" && pirate.type == "licht"){
         int random = ran.get_random(0,100);
         if(random <5){
 
@@ -111,7 +122,7 @@ void Fight_state::vlucht(Ship pirate, Ship me) {
             fight(pirate, me);
         }
     }
-    if(me.type == "log" && pirate.type == ""){
+    if(me->type == "log" && pirate.type == ""){
         int random = ran.get_random(0,100);
         if(random <15){
 
@@ -119,7 +130,7 @@ void Fight_state::vlucht(Ship pirate, Ship me) {
             fight(pirate, me);
         }
     }
-    if(me.type == "log" && pirate.type == "log"){
+    if(me->type == "log" && pirate.type == "log"){
         int random = ran.get_random(0,100);
         if(random <30){
 
@@ -129,22 +140,22 @@ void Fight_state::vlucht(Ship pirate, Ship me) {
     }
 }
 
-void Fight_state::fight(Ship pirate, Ship me) {
+void Fight_state::fight(Ship pirate, Ship *me) {
 
-    for(int x = 0 ; x < me.cannon.size(); x++){
-        pirate.hp - me.cannon[x].damgage;
-        pirate.hp - me.cannon[x].damgage;
+    for(int x = 0 ; x < me->cannon.size(); x++){
+        pirate.hp - me->cannon[x].damgage;
+        pirate.hp - me->cannon[x].damgage;
 
     }
     if(pirate.hp > 0 ){
         for(int x = 0 ; x < pirate.cannon.size(); x++){
-            me.hp - pirate.cannon[x].damgage;
+            me->hp = me->hp - pirate.cannon[x].damgage;
         }
     }else{
         cout << "pirate  death"<< endl;
 
     }
-    if(me.hp > 0){
+    if(me->hp > 0){
 
     }else{
         cout << "Game over"<< endl;
@@ -157,8 +168,7 @@ Ship Fight_state::pirate() {
 
         int random = ran.get_random(1,3);
     Ship piraat;
-    piraat.hp = ran.get_random(100,400);
-    piraat.space = ran.get_random(50,100);
+    piraat.hp = ran.get_random(100,200);
     for(int x = 0 ; x < 8 ; x++){
         Canon canon;
         canon.damgage = 2;

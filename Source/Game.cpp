@@ -10,17 +10,25 @@ Game::Game(int coins, const char begin_haven[], Game_state game) : player{coins,
     is_running = true;
 }
 void Game::run(){
+
     Haven_state game = Haven_state();
     player.game_state = &game;
-    while(is_running){
+    player.ship.hp =1;
+    while(player.ship.hp > 0 && player.get_current_coins() < 100000){
 
         std::cout << "haven: " << player.get_current_haven() << std::endl;
         std::cout << "ship: " << player.get_current_ship() << std::endl;
-        std::cout << "coins: " << player.ship.hp << std::endl;
-
+        std::cout << "HP: " << player.ship.hp << std::endl;
         std::cout << "coins: " << player.get_current_coins() << std::endl;
         player.game_state->run(&player);
 
+    }
+    if(player.get_current_coins() > 100000){
+        cout<< "je hebt gewonnen";
+
+
+    }else{
+        cout<< "je bent dood";
     }
 }
 

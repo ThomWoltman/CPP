@@ -11,10 +11,13 @@ using namespace std;
 int Random::get_random(int first, int second) {
     std::default_random_engine generator;
     generator.seed(time(0));
-    std::uniform_int_distribution<int> distribution1(first,second);
+    std::uniform_int_distribution<int> distribution1(first, second);
 
-        return distribution1(generator);
+    int xRan;
+    srand(time(0)); // This will ensure a really randomized number by help of time.
 
+    xRan = rand() % second + first;
+    return xRan;
 }
 
 int Random::get_random_char(string first) {
