@@ -50,6 +50,8 @@ while (pirate.hp >0 || !gevlucht){
         if(!gevlucht){
             cout << "Je bent niet gevlucht"<< endl;
         }else{
+            delete player->game_state;
+
             player->game_state = new Sea_state();
             return;
 
@@ -58,6 +60,8 @@ while (pirate.hp >0 || !gevlucht){
     else if(i.equals("3")){
         std::cout << "Je bent helemaal leeg geroofd" << std::endl;
         player->ship.resources.clear();
+        delete player->game_state;
+
         player->game_state = new Sea_state();
 
     }

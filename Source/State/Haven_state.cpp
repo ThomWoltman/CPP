@@ -120,8 +120,10 @@ index++;
     player->beurten = atoi(data[havenIndex].distances[index].c_str());
 
     //delete player->game_state;
-    Sea_state sea = Sea_state();
-    player->game_state =& sea;
+    delete player->game_state;
+
+    Sea_state *sea = new Sea_state();
+    player->game_state = sea;
 //    Game_state_context game;
 //    game.next_state(2);
 

@@ -14,6 +14,8 @@ void Sea_state::run(Player *player) {
 
         int kuch = ran.get_random(0,100);
         if(kuch < 21){
+            delete player->game_state;
+
             player->game_state = new Fight_state();
             return;
         }
@@ -75,8 +77,9 @@ void Sea_state::run(Player *player) {
         char input;
     cin >> input;
     }
-player->game_state = new Haven_state();
+    delete player->game_state;
 
+    player->game_state = new Fight_state();
 
 }
 
